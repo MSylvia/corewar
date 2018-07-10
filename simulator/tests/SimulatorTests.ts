@@ -133,8 +133,8 @@ describe("Simulator", () => {
 
         simulator.step();
 
-        expect(decodeCalled).to.be.equal(true);
-        expect(executeCalled).to.be.equal(true);
+        expect(decodeCalled).to.equal(true);
+        expect(executeCalled).to.equal(true);
     });
 
     it("step returns true if the end condition check returns true", () => {
