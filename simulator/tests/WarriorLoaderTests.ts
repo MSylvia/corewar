@@ -18,6 +18,8 @@ import { MessageType } from "../interface/IMessage";
 
 describe("WarriorLoader", () => {
 
+    const CORESIZE = 8000;
+
     var instruction = TestHelper.instruction;
 
     var testTokens = instruction("DAT", ".A", "$", 0, "$", 1)
@@ -55,8 +57,11 @@ describe("WarriorLoader", () => {
             initialise: (options: IOptions) => {
                 //
             },
-            wrap: (index: number): number => {
-                return index;
+            wrap: (address: number): number => {
+                address = address % CORESIZE;
+                address = address >= 0 ? address : address + CORESIZE;
+
+                return address;
             },
             executeAt: (task: ITask, index: number): IInstruction => {
                 return core.instructions[index];
@@ -174,6 +179,21 @@ describe("WarriorLoader", () => {
         }
     });
 
+    it("applies wraps addresses so that they are in the range 0-(CORESIZE-1)", () => {
+
+        const tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", -1, "$", 8001));
+        const core = buildCore(30);
+
+        const loader = new WarriorLoader(core, this.publisher);
+        debugger;
+        loader.load(21, tokens, 0);
+
+        const instr = core.readAt(null, 21);
+
+        expect(instr.aOperand.address).to.be.equal(7999);
+        expect(instr.bOperand.address).to.be.equal(1);
+    });
+
     it("Correctly interprets token opcodes into simulator instructions", () => {
 
         var core = buildCore(20);
@@ -267,14 +287,14 @@ describe("WarriorLoader", () => {
         expect(core.readAt(null, 5).aOperand.address).to.be.equal(10);
         expect(core.readAt(null, 6).aOperand.address).to.be.equal(12);
         expect(core.readAt(null, 7).aOperand.address).to.be.equal(14);
-        expect(core.readAt(null, 8).aOperand.address).to.be.equal(-1);
-        expect(core.readAt(null, 9).aOperand.address).to.be.equal(-3);
-        expect(core.readAt(null, 10).aOperand.address).to.be.equal(-5);
-        expect(core.readAt(null, 11).aOperand.address).to.be.equal(-7);
-        expect(core.readAt(null, 12).aOperand.address).to.be.equal(-9);
-        expect(core.readAt(null, 13).aOperand.address).to.be.equal(-11);
-        expect(core.readAt(null, 14).aOperand.address).to.be.equal(-13);
-        expect(core.readAt(null, 15).aOperand.address).to.be.equal(-15);
+        expect(core.readAt(null, 8).aOperand.address).to.be.equal(7999);
+        expect(core.readAt(null, 9).aOperand.address).to.be.equal(7997);
+        expect(core.readAt(null, 10).aOperand.address).to.be.equal(7995);
+        expect(core.readAt(null, 11).aOperand.address).to.be.equal(7993);
+        expect(core.readAt(null, 12).aOperand.address).to.be.equal(7991);
+        expect(core.readAt(null, 13).aOperand.address).to.be.equal(7989);
+        expect(core.readAt(null, 14).aOperand.address).to.be.equal(7987);
+        expect(core.readAt(null, 15).aOperand.address).to.be.equal(7985);
         expect(core.readAt(null, 16).aOperand.address).to.be.equal(0);
     });
 
@@ -319,14 +339,14 @@ describe("WarriorLoader", () => {
         expect(core.readAt(null, 5).bOperand.address).to.be.equal(11);
         expect(core.readAt(null, 6).bOperand.address).to.be.equal(13);
         expect(core.readAt(null, 7).bOperand.address).to.be.equal(15);
-        expect(core.readAt(null, 8).bOperand.address).to.be.equal(-2);
-        expect(core.readAt(null, 9).bOperand.address).to.be.equal(-4);
-        expect(core.readAt(null, 10).bOperand.address).to.be.equal(-6);
-        expect(core.readAt(null, 11).bOperand.address).to.be.equal(-8);
-        expect(core.readAt(null, 12).bOperand.address).to.be.equal(-10);
-        expect(core.readAt(null, 13).bOperand.address).to.be.equal(-12);
-        expect(core.readAt(null, 14).bOperand.address).to.be.equal(-14);
-        expect(core.readAt(null, 15).bOperand.address).to.be.equal(-16);
+        expect(core.readAt(null, 8).bOperand.address).to.be.equal(7998);
+        expect(core.readAt(null, 9).bOperand.address).to.be.equal(7996);
+        expect(core.readAt(null, 10).bOperand.address).to.be.equal(7994);
+        expect(core.readAt(null, 11).bOperand.address).to.be.equal(7992);
+        expect(core.readAt(null, 12).bOperand.address).to.be.equal(7990);
+        expect(core.readAt(null, 13).bOperand.address).to.be.equal(7988);
+        expect(core.readAt(null, 14).bOperand.address).to.be.equal(7986);
+        expect(core.readAt(null, 15).bOperand.address).to.be.equal(7984);
         expect(core.readAt(null, 16).bOperand.address).to.be.equal(0);
     });
 
@@ -409,7 +429,7 @@ describe("WarriorLoader", () => {
 
         const expectedData = {
             foo: "foo",
-            array: [ 1, 2, 3 ]
+            array: [1, 2, 3]
         };
         const expectedId = 5;
         const core = buildCore(0);
