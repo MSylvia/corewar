@@ -64,7 +64,7 @@ describe("Imp - Faux Hill Performance", () => {
     testEndTime = performance.now();
     console.log(roundCount)
     console.log("Test took " + (testEndTime - testStartTime) + " milliseconds.");
-  })
+  });
 
   it("10 runs for a hill of 2 imps", () => {
 
