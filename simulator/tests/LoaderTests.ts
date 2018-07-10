@@ -1,10 +1,7 @@
-﻿import * as chai from "chai";
-import * as sinon from "sinon";
-import * as sinonChai from "sinon-chai";
-var expect = chai.expect;
-chai.use(sinonChai);
+﻿import * as sinon from "sinon";
+import { expect } from "chai";
 
-import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
+import { ICore } from "../interface/ICore";
 import { IRandom } from "../interface/IRandom";
 import { IWarriorLoader } from "../interface/IWarriorLoader";
 import { IParseResult } from "../../parser/interface/IParseResult";
@@ -175,7 +172,7 @@ describe("Loader",() => {
         randoms = [10, 12, 18, 19, 4, 1];
 
         var options = Object.assign({},
-            Defaults, 
+            Defaults,
             {
                 coresize: 30,
                 instructionLimit: 5,

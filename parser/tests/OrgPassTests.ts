@@ -1,7 +1,7 @@
 ﻿import { expect } from "chai";
 
 import { TestHelper } from "./TestHelper";
-import { Context } from "..//Context";
+import { Context } from "../Context";
 import { OrgPass } from "../OrgPass";
 import { Parser } from "../Parser";
 import { MessageType } from "../interface/IMessage";

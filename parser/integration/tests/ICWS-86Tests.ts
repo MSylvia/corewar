@@ -1,6 +1,6 @@
 ﻿
 import { TestHelper } from  "./TestHelper";
-import { Standard } from "./../../interface/IParseOptions";
+import { Standard } from "../../interface/IParseOptions";
 "use strict";
 
 describe("ICWS'86",() => {
