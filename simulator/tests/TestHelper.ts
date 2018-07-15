@@ -14,6 +14,15 @@ import { IPublisher } from "../interface/IPublisher";
 
 "use strict";
 
+// funky TS namespace extension for @types/chai
+declare global {
+  export namespace Chai {
+    interface Assertion {
+      thisInstruction(expected: IInstruction): Assertion;
+    }
+  }
+}
+
 export default class TestHelper {
 
     public static position = {

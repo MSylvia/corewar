@@ -1,21 +1,11 @@
-﻿import * as chai from "chai";
-import * as sinon from "sinon";
-import * as sinonChai from "sinon-chai";
-var expect = chai.expect;
-chai.use(sinonChai);
+﻿import { expect } from "chai";
 
 import TestHelper from "./TestHelper";
 import * as Helper from "./DecoderTestHelper";
 
-import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
-import { IInstruction } from "../interface/IInstruction";
-import { OpcodeType, ModifierType } from "../interface/IInstruction";
+import { OpcodeType, IInstruction } from "../interface/IInstruction";
 import { IExecutive } from "../interface/IExecutive";
 import { IExecutionContext } from "../interface/IExecutionContext";
-import { ITask } from "../interface/ITask";
-import Defaults from "../Defaults";
-import { IOptions } from "../interface/IOptions";
-import { ModeType } from "../interface/IOperand";
 import { Decoder } from "../Decoder";
 import { IDecoder } from "../interface/IDecoder";
 

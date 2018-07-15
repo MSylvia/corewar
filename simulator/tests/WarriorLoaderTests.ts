@@ -1,8 +1,5 @@
-﻿import * as chai from "chai";
-import * as sinon from "sinon";
-import * as sinonChai from "sinon-chai";
-var expect = chai.expect;
-chai.use(sinonChai);
+﻿import * as sinon from "sinon";
+import { expect } from "chai";
 
 import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
 import { IOptions } from "../interface/IOptions";
@@ -400,7 +397,7 @@ describe("WarriorLoader", () => {
         var loader = new WarriorLoader(core, this.publisher);
 
         var actual = null;
-        (<sinon.stub>core.setAt).callsFake((task, address, instruction) => {
+        (<sinon.SinonStub>core.setAt).callsFake((task, address, instruction) => {
 
             actual = task.warrior.id;
         });

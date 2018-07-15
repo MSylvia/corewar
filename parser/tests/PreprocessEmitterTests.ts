@@ -2,7 +2,7 @@
 
 import { Context } from "../Context";
 import { IToken, TokenCategory } from "../interface/IToken";
-import { Parser } from "..//Parser";
+import { Parser } from "../Parser";
 import { PreprocessEmitter } from "../PreprocessEmitter";
 import { MessageType } from "../interface/IMessage";
 

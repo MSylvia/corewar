@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import { TestHelper } from  "./TestHelper";
-import { Standard } from "./../../interface/IParseOptions";
+import { Standard } from "../../interface/IParseOptions";
 import { MessageType } from "../../interface/IMessage";
 
 describe("Regression Tests",() => {

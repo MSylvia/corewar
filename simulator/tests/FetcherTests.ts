@@ -1,8 +1,8 @@
-﻿import { expect } from "chai";
-import * as sinon from "sinon";
+﻿import * as sinon from "sinon";
+import { expect } from "chai";
 
 import { IState } from "../interface/IState";
-import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
+import { ICore } from "../interface/ICore";
 import { OpcodeType, ModifierType } from "../interface/IInstruction";
 import { ModeType } from "../interface/IOperand";
 import Defaults from "../Defaults";
