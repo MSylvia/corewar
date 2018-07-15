@@ -4,6 +4,7 @@ import { IParseResult } from "../../parser/interface/IParseResult";
 import { corewar } from '../../index'
 import Defaults from '../../simulator/Defaults'
 import { IPublishProvider } from "../../simulator/interface/IPublishProvider";
+import { performance } from 'perf_hooks';
 
 export default class TestHarness {
 
@@ -54,7 +55,7 @@ export default class TestHarness {
         
     }
 
-    public SimulateHill(warriors: IParseResult[]) {
+    public SimulateHill(warriors: IParseResult[], numberOfRounds: number) {
 
         warriors.forEach(warrior => {
 
@@ -64,9 +65,9 @@ export default class TestHarness {
                   this.CreateCore(warriors);
                   //this.LoadWarrior(x)
                   //this.LoadWarrior(warrior)
-                  this.SimulateRounds(10)
+                  this.SimulateRounds(numberOfRounds)
                   //this.Reset()
-              }
+              });
             
         });
 

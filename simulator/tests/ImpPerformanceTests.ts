@@ -1,5 +1,3 @@
-
-import { performance } from "perf_hooks";
 import * as sinon from "sinon";
 import { expect } from "chai";
 import { corewar } from '../../index';
@@ -7,6 +5,7 @@ import { IOptions } from '../interface/IOptions';
 import { IParseResult } from "../../parser/interface/IParseResult";
 import Defaults from "../Defaults";
 import { IPublishProvider } from "../interface/IPublishProvider";
+import { performance } from 'perf_hooks';
 
 describe("Imp - Faux Hill Performance", () => {
 
@@ -36,7 +35,7 @@ describe("Imp - Faux Hill Performance", () => {
     const pubSubObj: IPublishProvider = {
 
       publishSync: (type: String, payload?: any) => {
-        console.log(type)
+        //console.log(type)
         if(type === 'ROUND_END') {
 
           roundCount++;
